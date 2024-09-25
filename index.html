@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chain Reaction Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Chain Reaction Game</h1>
+        <p>Start with a word and guess the related word in the chain!</p>
+        
+        <!-- Display the current word -->
+        <div id="word-display">
+            <p>Current Word: <span id="current-word">Sun</span></p>
+        </div>
+
+        <!-- Input box for user guesses -->
+        <input type="text" id="guess-input" placeholder="Enter your guess here" />
+
+        <!-- Button to submit the guess -->
+        <button id="submit-guess">Submit Guess</button>
+
+        <!-- Feedback for the user -->
+        <div id="feedback"></div>
+
+        <!-- Display the number of attempts -->
+        <div id="attempts">
+            <p>Attempts Left: <span id="attempt-count">5</span></p>
+        </div>
+
+        <!-- Hint Button -->
+        <div id="hints">
+            <p>Hints Left: <span id="hint-count">3</span></p>
+            <button id="hint-button" style="background-color: red; color: white;">Get Hint</button>
+        </div>
+
+        <!-- Score Display -->
+        <div id="score">
+            <p>Score: <span id="score-display">0</span></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
