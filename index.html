@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word Association Wordle</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Include canvas-confetti from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+  <div class="game-container">
+    <h1 class="game-title">Word Chain</h1>
+
+    <!-- Word Grid -->
+    <div id="word-grid" class="word-grid"></div>
+
+    <!-- Input for the user's guess -->
+    <input type="text" id="guess-input" placeholder="Enter your guess" />
+
+    <button id="submit-guess" class="game-btn">Submit Guess</button>
+    <button id="hint-btn" class="game-btn">Get a Hint</button> <!-- Hint button -->
+
+    <!-- Feedback and Word Chain -->
+    <div id="feedback" class="feedback"></div>
+
+    <div class="game-info">
+      <p>Attempts Left: <span id="attempt-count">6</span></p>
+      <p>Score: <span id="score">100</span></p> <!-- Score display -->
+
+      <div class="previous-words-section">
+        <h3>Word Chain</h3>
+        <ul id="previous-words-list"></ul>
+      </div>
+    </div>
+
+    <!-- Celebration Animation -->
+    <div id="celebration" class="celebration"></div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
