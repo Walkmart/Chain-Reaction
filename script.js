@@ -293,7 +293,7 @@ function showResultsScreen(failed = false) {
 
 // Copy results to clipboard for sharing with either success or failure message
 function shareResults(failed = false) {
-    const websiteLink = "https://compundle.com";  // Replace with your actual website URL
+    const websiteLink = "http://compundle.com";  // Replace with your actual website URL
     let resultsText;
 
     const minutes = Math.floor(elapsedTime / 60);
