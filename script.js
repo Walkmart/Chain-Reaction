@@ -1,4 +1,4 @@
-// Array of word chains for each day of the month (30 word chains)
+// Array of word chains for each day of the month 
 let wordChainsByDay = [
     ["Sun", "Screen", "Door", "Bell", "Hop"],            // Day 1
     ["Rain", "Drop", "Zone", "Defense", "Shield"],       // Day 2
@@ -214,35 +214,113 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 // Create grids for all words in the chain and pre-fill the first word
+// Automatically focus the guess input when a tile in the active row is clicked
+function enableTileClickForInputFocus(currentWordIndex) {
+  const wordRow = document.getElementById(`word-row-${currentWordIndex}`);
+  const tiles = wordRow.querySelectorAll('.tile');
+  
+  // Add click event listener to each tile in the active word row
+  tiles.forEach(tile => {
+      tile.addEventListener('click', function() {
+          document.getElementById("guess-input").focus();  // Focus the input field
+      });
+  });
+}
+
+// Ensure that the input field focuses when the grid is created
 function createAllGrids() {
   wordGrid.innerHTML = '';  // Clear any previous grid
 
-  // Loop through each word in the word chain and create a grid for it
   wordChain.forEach((word, index) => {
-    const wordRow = document.createElement('div');
-    wordRow.classList.add('word-row');
-    wordRow.id = `word-row-${index}`;  // Unique ID for each word row
-    wordRow.style.gridTemplateColumns = `repeat(${word.length}, 50px)`;  // Set grid columns based on word length
+      const wordRow = document.createElement('div');
+      wordRow.classList.add('word-row');
+      wordRow.id = `word-row-${index}`;  // Unique ID for each word row
+      wordRow.style.gridTemplateColumns = `repeat(${word.length}, 50px)`;  // Set grid columns based on word length
 
-    // Create boxes (tiles) for each letter in the word
-    for (let i = 0; i < word.length; i++) {
-      const tile = document.createElement('div');
-      tile.classList.add('tile');
-      tile.setAttribute('data-word-index', index);  // Identify the word by index
-      
-      // Pre-fill the first word (e.g., "Sun")
-      if (index === 0) {
-        tile.innerText = word[i].toUpperCase();  // Pre-fill the first word automatically
-        tile.classList.add("correct");  // Mark the first word as correct
-        tile.classList.add("locked");  // Lock the first word so it won't be editable
+      for (let i = 0; i < word.length; i++) {
+          const tile = document.createElement('div');
+          tile.classList.add('tile');
+          tile.setAttribute('data-word-index', index);
+
+          if (index === 0) {
+              tile.innerText = word[i].toUpperCase();  // Pre-fill the first word automatically
+              tile.classList.add("correct");  // Mark the first word as correct
+              tile.classList.add("locked");  // Lock the first word so it won't be editable
+          }
+
+          wordRow.appendChild(tile);
       }
 
-      wordRow.appendChild(tile);
-    }
+      wordGrid.appendChild(wordRow);
+  });
 
-    wordGrid.appendChild(wordRow);  // Add the row to the word grid
+  // Highlight the first word row as active
+  highlightActiveRow(currentWordIndex);
+  // Enable click-to-focus on the first word row
+  enableTileClickForInputFocus(currentWordIndex);
+}
+
+// Function to highlight the active row (current word row)
+function highlightActiveRow(index) {
+  const rows = document.querySelectorAll('.word-row');
+  rows.forEach((row, rowIndex) => {
+      row.classList.remove('active-row');  // Remove active class from all rows
+      if (rowIndex === index) {
+          row.classList.add('active-row');  // Add active class to the current row
+      }
   });
 }
+
+// Move to the next word
+function moveToNextWord() {
+  currentWordIndex++;  // Move to the next word in the chain
+
+  if (currentWordIndex >= wordChain.length) {
+      feedback.innerText = "Congratulations! You've completed the word chain!";
+      score += bonusPoints;
+      scoreDisplay.innerText = score;  // Update the score display
+      feedback.innerText += ` Bonus: +${bonusPoints} points!`;
+      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
+      showResultsScreen();
+      submitButton.disabled = true;
+      hintButton.disabled = true;
+      guessInput.disabled = true;
+      return;
+  }
+
+  targetWord = wordChain[currentWordIndex].toLowerCase();
+  wordLength = targetWord.length;  // Make sure wordLength is updated
+  attemptsLeft = 6;  // Reset attempts
+  hintsUsed = 0;  // Reset hints for the next word
+  attemptCountDisplay.innerText = attemptsLeft;
+  scoreDisplay.innerText = score;
+
+  guessInput.value = "";  // Clear the input for the next word
+  hintButton.disabled = false;  // Enable the hint button for the new word
+
+  // Highlight the new active word row
+  highlightActiveRow(currentWordIndex);
+
+  // Re-enable click-to-focus for the new active word row
+  enableTileClickForInputFocus(currentWordIndex);
+}
+
+// Event listener to update the tiles as the user types
+guessInput.addEventListener("input", updateTiles);
+
+// Event listener for the submit button
+submitButton.addEventListener("click", checkGuess);
+
+// Initial setup for the game grid and input focusing
+document.addEventListener('DOMContentLoaded', (event) => {
+  if (!checkIfPlayedToday()) {
+      createAllGrids();  // Setup the word grids
+      attemptCountDisplay.innerText = attemptsLeft;
+      scoreDisplay.innerText = score;
+  }
+});
+
+
 
 // Timer function
 function startTimer() {
@@ -564,3 +642,29 @@ closeResultsButton.addEventListener("click", closeResultsScreen);
 createAllGrids();  // Set up the word grids
 attemptCountDisplay.innerText = attemptsLeft;
 scoreDisplay.innerText = score;
+
+// Get the modal
+var modal = document.getElementById("info-modal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("info-btn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
