@@ -7,8 +7,8 @@ let wordChainsByDay = [
     ["Fire", "Fly", "Wheel", "Barrow", "Race"],          // Day 5
     ["Water", "Fall", "Out", "Line", "Up"],              // Day 6
     ["Wind", "Mill", "Stone", "Wall", "Paper"],          // Day 7
-    ["Ice", "Cream", "Cheese", "Board" "Walk"],          // Day 8
-    ["Note", "Book", "Case", "Work", "Place"],           // Day 9
+    ["Ice", "Cream", "Cheese", "Head", "Start"],           // Day 8
+    ["Butter", "Fly", "Wheel", "Chair", "Lift"],         // Day 9
     ["Sand", "Castle", "Rock", "Climb", "Wall"],         // Day 10
     ["Star", "Fish", "Bowl", "Cut", "Out"],              // Day 11
     ["Light", "House", "Boat", "Race", "Track"],         // Day 12
@@ -91,17 +91,17 @@ let wordChainsByDay = [
   ];
   
 
-// Function to calculate the number of days since a given start date
+// Function to calculate the number of days since a given start date, using local time
 function calculateDayIndex(startDate) {
-    const today = new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()));  // Use UTC time
-    const timeDiff = today.getTime() - startDate.getTime();  // Difference in milliseconds
-    const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));  // Convert to days
-    return daysPassed;
+  const today = new Date();  // Use local time
+  const timeDiff = today.getTime() - startDate.getTime();  // Difference in milliseconds
+  const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));  // Convert to days
+  return daysPassed;
 }
 
 
 // Set the start date for your game (e.g., the day the game was first started)
-const gameStartDate = new Date('2024-09-26'); // Replace this date with the actual game start date
+const gameStartDate = new Date('2024-09-27'); // Replace this date with the actual game start date
 
 // Calculate the current day index based on how many days have passed
 let daysSinceStart = calculateDayIndex(gameStartDate);
@@ -668,3 +668,4 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
