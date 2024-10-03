@@ -6,8 +6,6 @@ let wordChainsByDay = [
     ["Snow", "Ball", "Park", "Bench", "Press"],          // Day 4
     ["Fire", "Fly", "Wheel", "Barrow", "Race"],          // Day 5
     ["Water", "Fall", "Out", "Line", "Up"],              // Day 6
-    ["Wind", "Mill", "Stone", "Wall", "Paper"],          // Day 7
-    ["Ice", "Cream", "Cheese", "Head", "Start"],           // Day 8
     ["Butter", "Fly", "Wheel", "Chair", "Lift"],         // Day 9
     ["Sand", "Castle", "Rock", "Climb", "Wall"],         // Day 10
     ["Star", "Fish", "Bowl", "Cut", "Out"],              // Day 11
@@ -101,7 +99,7 @@ function calculateDayIndex(startDate) {
 
 
 // Set the start date for your game (e.g., the day the game was first started)
-const gameStartDate = new Date('2024-09-24'); // Replace this date with the actual game start date
+const gameStartDate = new Date('2024-09-27'); // Replace this date with the actual game start date
 
 // Calculate the current day index based on how many days have passed
 let daysSinceStart = calculateDayIndex(gameStartDate);
