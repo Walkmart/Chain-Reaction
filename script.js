@@ -7,8 +7,8 @@ let wordChainsByDay = [
     ["Fire", "Fly", "Wheel", "Barrow", "Race"],          // Day 5
     ["Water", "Fall", "Out", "Line", "Up"],              // Day 6
     ["Wind", "Mill", "Stone", "Wall", "Paper"],          // Day 7
-    ["Ice", "Cream", "Cheese", "Board" "Walk"],           // Day 8
-    ["Note", "Book", "Case", "Work", "Place"],         // Day 9
+    ["Ice", "Cream", "Cheese", "Board" "Walk"],          // Day 8
+    ["Note", "Book", "Case", "Work", "Place"],           // Day 9
     ["Sand", "Castle", "Rock", "Climb", "Wall"],         // Day 10
     ["Star", "Fish", "Bowl", "Cut", "Out"],              // Day 11
     ["Light", "House", "Boat", "Race", "Track"],         // Day 12
