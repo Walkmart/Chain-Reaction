@@ -101,7 +101,7 @@ function calculateDayIndex(startDate) {
 
 
 // Set the start date for your game (e.g., the day the game was first started)
-const gameStartDate = new Date('2024-09-27'); // Replace this date with the actual game start date
+const gameStartDate = new Date('2024-09-24'); // Replace this date with the actual game start date
 
 // Calculate the current day index based on how many days have passed
 let daysSinceStart = calculateDayIndex(gameStartDate);
