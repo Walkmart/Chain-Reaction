@@ -6,7 +6,6 @@ let wordChainsByDay = [
     ["Snow", "Ball", "Park", "Bench", "Press"],          // Day 4
     ["Fire", "Fly", "Wheel", "Barrow", "Race"],          // Day 5
     ["Water", "Fall", "Out", "Line", "Up"],              // Day 6
-    ["Butter", "Fly", "Wheel", "Chair", "Lift"],         // Day 9
     ["Sand", "Castle", "Rock", "Climb", "Wall"],         // Day 10
     ["Star", "Fish", "Bowl", "Cut", "Out"],              // Day 11
     ["Light", "House", "Boat", "Race", "Track"],         // Day 12
@@ -89,13 +88,14 @@ let wordChainsByDay = [
   ];
   
 
-// Function to calculate the number of days since a given start date, using local time
+// Function to calculate the number of days since a given start date, using UTC to ensure day-to-day change at midnight
 function calculateDayIndex(startDate) {
-  const today = new Date();  // Use local time
+  const today = new Date(Date.UTC(new Date().getUTCFullYear(), new Date().getUTCMonth(), new Date().getUTCDate()));  // Use UTC to ensure midnight reset
   const timeDiff = today.getTime() - startDate.getTime();  // Difference in milliseconds
   const daysPassed = Math.floor(timeDiff / (1000 * 60 * 60 * 24));  // Convert to days
   return daysPassed;
 }
+
 
 
 // Set the start date for your game (e.g., the day the game was first started)
@@ -666,4 +666,5 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
 
