@@ -1,20 +1,20 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 128 128">
-  <defs>
-    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
-      <stop offset="0" stop-color="#6aaa64"/>
-      <stop offset="1" stop-color="#4d8f49"/>
-    </linearGradient>
-  </defs>
-  <rect rx="24" ry="24" x="4" y="4" width="120" height="120" fill="url(#g)"/>
-  <g fill="#fff">
-    <rect x="22" y="26" width="20" height="20" rx="4"/>
-    <rect x="54" y="26" width="20" height="20" rx="4" fill="#c9b458"/>
-    <rect x="86" y="26" width="20" height="20" rx="4" opacity=".65"/>
-    <rect x="22" y="58" width="20" height="20" rx="4" opacity=".65"/>
-    <rect x="54" y="58" width="20" height="20" rx="4"/>
-    <rect x="86" y="58" width="20" height="20" rx="4" opacity=".65"/>
-    <rect x="22" y="90" width="20" height="20" rx="4" opacity=".65"/>
-    <rect x="54" y="90" width="20" height="20" rx="4" opacity=".65"/>
-    <rect x="86" y="90" width="20" height="20" rx="4"/>
-  </g>
-</svg>
+<ns0:svg xmlns:ns0="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 128 128">
+  <ns0:defs>
+    <ns0:linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <ns0:stop offset="0" stop-color="#6aaa64" />
+      <ns0:stop offset="1" stop-color="#4d8f49" />
+    </ns0:linearGradient>
+  </ns0:defs>
+  <ns0:rect rx="24" ry="24" x="4" y="4" width="120" height="120" fill="url(#g)" />
+  <ns0:g fill="#fff">
+    <ns0:rect x="22" y="26" width="20" height="20" rx="4" />
+    <ns0:rect x="54" y="26" width="20" height="20" rx="4" fill="#c9b458" />
+    <ns0:rect x="86" y="26" width="20" height="20" rx="4" opacity=".65" />
+    <ns0:rect x="22" y="58" width="20" height="20" rx="4" opacity=".65" />
+    <ns0:rect x="54" y="58" width="20" height="20" rx="4" />
+    <ns0:rect x="86" y="58" width="20" height="20" rx="4" opacity=".65" />
+    <ns0:rect x="22" y="90" width="20" height="20" rx="4" opacity=".65" />
+    <ns0:rect x="54" y="90" width="20" height="20" rx="4" opacity=".65" />
+    <ns0:rect x="86" y="90" width="20" height="20" rx="4" />
+  </ns0:g>
+</ns0:svg>
