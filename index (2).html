@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Compundle — Daily</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- Firebase (compat CDN) -->
+  <script defer src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+  <script defer src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
+  <script>
+    // Your Firebase config (wired from your message)
+    window.COMPUNDLE_FIREBASE_CONFIG = {"apiKey": "AIzaSyBOqaIPxO1-gOFl8-5ndHOj00Du_sID0Jo", "authDomain": "compundle.firebaseapp.com", "projectId": "compundle", "storageBucket": "compundle.firebasestorage.app", "messagingSenderId": "13300870377", "appId": "1:13300870377:web:3be2396eaa7dba0c991478", "measurementId": "G-D5QWVZYE5F"};
+  </script>
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-D5QWVZYE5F"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-D5QWVZYE5F');
+  </script>
+</head>
+<body>
+  <header class="compact-header">
+    <div class="brand-wrap">
+      <img src="mascot.svg?v=2" alt="Compundle" width="32" height="32">
+      <h1 class="brand-title">Compundle</h1>
+    </div>
+    <div class="auth">
+      <button id="btn-stats" class="pill hidden">My Stats</button>
+      <span id="user-chip" class="chip slim hidden"></span>
+      <button id="btn-signin" class="pill">Sign in</button>
+      <button id="btn-signout" class="pill hidden">Sign out</button>
+    </div>
+  </header>
+
+  <main class="stage">
+    <!-- Start overlay -->
+    <section id="start-overlay" class="overlay">
+      <div class="card">
+        <div class="start-logo">
+          <div class="logo-squares large"><span></span><span></span><span></span><span></span><span></span></div>
+          <h2>Daily Puzzle</h2>
+        </div>
+        <p class="lede">One chain per day. Each adjacent pair makes a single closed-compound word.</p>
+        <div class="start-actions">
+          <button id="btn-start" class="primary">Play Today’s</button>
+          <button id="btn-how" class="pill">How to Play</button>
+        </div>
+        <p id="played-note" class="played-note hidden">You’ve already finished today’s puzzle. Come back tomorrow!</p>
+      </div>
+    </section>
+
+    <!-- Game panel -->
+    <section id="panel" class="panel hidden">
+      <div class="meta trio">
+        <div class="chip">Score <b id="meta-score">100</b></div>
+        <div class="chip">Time <b id="meta-time">0:00</b></div>
+        <div class="chip">Date <b id="meta-date">—</b></div>
+      </div>
+
+      <div id="word-grid" class="word-grid"></div>
+      <div id="row-state" class="row-state" role="status" aria-live="polite"></div>
+
+      <div class="controls top">
+        <button id="btn-check" class="primary">Check</button>
+        <button id="btn-hint">Hint (−10)</button>
+        <button id="btn-continue" class="hidden">Continue ▶</button>
+        <button id="btn-how-2">How to Play</button>
+        <button id="btn-share-inline">Copy Results</button>
+      </div>
+
+      <!-- On-screen keyboard -->
+      <div class="kb" id="kb">
+        <div class="kb-row" data-row="1">Q W E R T Y U I O P</div>
+        <div class="kb-row" data-row="2">A S D F G H J K L</div>
+        <div class="kb-row" data-row="3">↵ Z X C V B N M ⌫</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- How to Play modal -->
+  <dialog id="how-modal" class="nyt-dialog">
+    <h3>How to Play</h3>
+    <ol>
+      <li>Type directly into the tiles; correct letters turn <b class="ok">green</b> and lock.</li>
+      <li>Each adjacent pair forms a single closed-compound word.</li>
+      <li>You get 6 tries per word. <b>Hint</b> reveals one correct letter (but never the last).</li>
+      <li>Scoring: +10 per word, −10 per hint, −5 per wrong check, +20 bonus for finishing the chain.</li>
+      <li>One chain per day. Results save to your account if signed in.</li>
+    </ol>
+    <div class="dialog-actions">
+      <button id="how-close" class="primary">Got it</button>
+    </div>
+  </dialog>
+
+  <!-- Results modal -->
+  <dialog id="results-modal" class="nyt-dialog">
+    <h3>Nice work!</h3>
+    <p id="results-text">You scored 0 in 0:00.</p>
+    <div class="dialog-actions">
+      <button id="btn-share" class="primary">Copy Results</button>
+      <button id="btn-close-results">Close</button>
+    </div>
+  </dialog>
+
+  <!-- My Stats modal -->
+  <dialog id="stats-modal" class="nyt-dialog">
+    <h3>My Stats</h3>
+    <div id="stats-body">Sign in to load your history…</div>
+    <div class="dialog-actions">
+      <button id="btn-close-stats">Close</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
